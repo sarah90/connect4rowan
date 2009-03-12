@@ -1,4 +1,4 @@
-import javax.swing.ImageIcon;
+//import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -251,8 +251,12 @@ public class DrawBoard implements MouseListener{
                 return true;
             }
         }
-
+        //if there is a computer player it should move now
         return false;
+    }
+
+    public int[][] getBoard(){
+        return board;
     }
 
     public void mouseClicked(MouseEvent e) {}
