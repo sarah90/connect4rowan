@@ -8,22 +8,47 @@
  * @author bp2070
  */
 public class MiniMax {
-    int[] m;
-    int[][] board;
+    final int NUM_COLS = 7;
 
-    public MiniMax(){
-        m = new int[] {0,0};
-        board = new DrawBoard().getBoard();
+    //returns minimum value of children
+    private double expandMin(int currentNode){
+        double min = Double.MAX_VALUE;
+        /* check base cases
+         * depth
+         * column full
+         * win
+         * leaf
+         */ 
+        
+        for(int i = 0; i < NUM_COLS; i++){
+            
+            double temp = expandMax(i);
+            if (temp < min)
+                min = temp;
+            
+        }
+        
+        return min;
+        
     }
-
-    public int[] getNextMove(){
-
-
-        return m;
+    
+    //returns maximum value of children
+    private double expandMax(int currentNode){
+        double max = -1;
+        /* check base cases
+         * depth
+         * column full
+         * win
+         * leaf
+         */
+        
+        for(int i = 0; i < NUM_COLS; i++){
+            double temp = expandMin(i);
+            if( temp > max)
+                max = temp;
+        }
+        
+        return max;
+        
     }
-
-    private void expandNode(){
-
-    }
-
 }
