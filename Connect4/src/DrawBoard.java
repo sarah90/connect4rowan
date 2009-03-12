@@ -135,7 +135,7 @@ public class DrawBoard implements MouseListener{
 
         if(temp_row > 5)
         {
-            temp_row = 5; //adjust range to largest row
+            temp_row = 5; //adjust range to largest ro        w
             temp_col = Math.abs(((temp_row - row)* 1)-col);
         }
         while(temp_row >=0 && temp_col <= 6)
