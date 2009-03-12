@@ -18,13 +18,13 @@ public class DrawBoard implements MouseListener{
 
     public DrawBoard()
     {
-        board = new int[6][7];
+        board = new int[6][7]; //Initialize board size.
         initComponents();
     }
 
     public void initComponents()
     {
-        newBoard();
+        newBoard(); //Clear the board for a new game.
         frame = new JFrame("CONNECT 4!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JMenuBar menubar = new JMenuBar();
@@ -37,8 +37,8 @@ public class DrawBoard implements MouseListener{
             public void actionPerformed(ActionEvent arg0)
             {
                 newBoard();
-                addComponentsToPane();
-                frame.pack();
+                addComponentsToPane();  //When File > New game is clicked
+                frame.pack();           //The board is cleared.
             }
         });
         frame.setJMenuBar(menubar);
@@ -75,6 +75,7 @@ public class DrawBoard implements MouseListener{
 
     private void newBoard()
     {
+        //Clears the 2D array for a new game.
         for(int i = 0; i < ROWS; i++)
             for(int j = 0; j < COLS; j++)
             {
@@ -120,7 +121,7 @@ public class DrawBoard implements MouseListener{
 
     private boolean checkInvDiagWin(int row, int col, int player)
     {
-        //if player is on these locations diagonal check it not needed (no WIN)
+        //if player is on these locations diagonal check is not needed (no WIN)
         if((row == 4 && col ==5)||(row ==4 && col ==6)||(row ==5&& col ==5)
             ||(row == 5 && col == 6 )||(row == 3 && col == 6)||(row == 0 && col ==0)||
             (row == 0 && col == 1)||(row == 1&& col == 0)||
@@ -231,6 +232,7 @@ public class DrawBoard implements MouseListener{
         return false;
     }
 
+    //Returns the smaller of the 2 parameters.
     private int min(int r, int c)
     {
         if(r < c)
@@ -239,6 +241,7 @@ public class DrawBoard implements MouseListener{
     }
 
 
+    //Drops a piece on the board for the player.
     private boolean dropPiece(MouseEvent e, int player){
         int colPicked = e.getX() / (frame.getWidth() / COLS);
 
@@ -252,9 +255,11 @@ public class DrawBoard implements MouseListener{
             }
         }
         //if there is a computer player it should move now
+
         return false;
     }
 
+    //returns the board.
     public int[][] getBoard(){
         return board;
     }
@@ -268,10 +273,10 @@ public class DrawBoard implements MouseListener{
     public void mousePressed(MouseEvent e) {}
 
     public void mouseReleased(MouseEvent e) {
-        if(e.getButton() == 1)
+        //if(e.getButton() == 1)
             dropPiece(e, 1);
-        else
-            dropPiece(e, 2);
+        //else
+         //   dropPiece(e, 2);
     }
 
     public void mouseEntered(MouseEvent e) {}
