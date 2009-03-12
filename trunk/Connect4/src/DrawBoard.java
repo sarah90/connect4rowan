@@ -259,6 +259,10 @@ public class DrawBoard implements MouseListener{
         return board;
     }
 
+    public static void main(String[] args){
+        new DrawBoard();
+    }
+
     public void mouseClicked(MouseEvent e) {}
 
     public void mousePressed(MouseEvent e) {}
