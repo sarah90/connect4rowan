@@ -242,20 +242,23 @@ public class DrawBoard implements MouseListener{
 
 
     //Drops a piece on the board for the player.
-    private boolean dropPiece(MouseEvent e, int player){
-        int colPicked = e.getX() / (frame.getWidth() / COLS);
+    private boolean dropPiece(int col, int player){
+        
 
         for(int i = ROWS-1; i >= 0; i--){
-            if(board[i][colPicked] == 0){
-                board[i][colPicked] = player;
+            if(board[i][col] == 0){
+                board[i][col] = player;
                 addComponentsToPane();
                 frame.pack();
-                checkWin(i, colPicked, 1);
+                checkWin(i, col, 1);
                 return true;
             }
         }
         //if there is a computer player it should move now
 
+        
+        
+        
         return false;
     }
 
@@ -267,14 +270,24 @@ public class DrawBoard implements MouseListener{
     public int[][] deepCopyBoard(int[][] original){
         int[][] copy = new int[ROWS][COLS];
 
-        for(int i = 0; i < ROWS; i++){
-            for(int j = 0; j < COLS; j++){
-                switch(original[ROWS][COLS]){
+        for(int i = 0; i < original.length-1; i++){
+            for(int j = 0; j < original[i].length-1; j++){
+                
+                if(original[i][j] == 0)
+                        copy[i][j] = 0;
+                else if(original[i][j] == 1)
+                        copy[i][j] = 1;
+                else if(original[i][j] == 2)
+                        copy[i][j] = 2;
+                else
+                        copy[i][j] = -1;
+                
+                /*switch(original[i][j]){
                     case 0: copy[i][j] = 0;
                     case 1: copy[i][j] = 1;
                     case 2: copy[i][j] = 2;
-                    default: copy[i][j] = -1;
-                }
+                    default: copy[i][j] = -2;
+                }*/
             }
         }
 
@@ -291,7 +304,14 @@ public class DrawBoard implements MouseListener{
 
     public void mouseReleased(MouseEvent e) {
         //if(e.getButton() == 1)
-            dropPiece(e, 1);
+        int col = e.getX() / (frame.getWidth() / COLS);
+        dropPiece(col, 1);
+        
+        MiniMax m = new MiniMax();
+        col = m.minimax(deepCopyBoard(board), 2, false);
+        
+        dropPiece(col, 2);
+            
         //else
          //   dropPiece(e, 2);
     }
