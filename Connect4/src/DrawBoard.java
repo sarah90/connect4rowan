@@ -270,8 +270,8 @@ public class DrawBoard implements MouseListener{
     public int[][] deepCopyBoard(int[][] original){
         int[][] copy = new int[ROWS][COLS];
 
-        for(int i = 0; i < original.length-1; i++){
-            for(int j = 0; j < original[i].length-1; j++){
+        for(int i = 0; i < original.length; i++){
+            for(int j = 0; j < original[i].length; j++){
                 
                 if(original[i][j] == 0)
                         copy[i][j] = 0;

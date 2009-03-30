@@ -11,7 +11,7 @@ public class MiniMax {
         int hvalue = 0;
         if(depth == 0)
         {
-            return my_heuristic(board);
+            return my_heuristic(board); 
         }
         else
         {
@@ -38,10 +38,8 @@ public class MiniMax {
                 }
             }
         }
+        return hvalue;
         
-    
-            
-        return depth;
     }
     
     public int minimax(int [] [] board, int depth, boolean player)
@@ -90,7 +88,7 @@ public class MiniMax {
     }
     private boolean isFull(int[][] board, int j)
     {
-        if(board[5][j] != 0)
+        if(board[0][j] != 0)
             return true;
         else
             return false;
@@ -99,7 +97,7 @@ public class MiniMax {
     
     private int my_heuristic(int[][] board )
     {
-        return (int)Math.random();
+        return (int)(Math.random()*10);
     }
     
 }
