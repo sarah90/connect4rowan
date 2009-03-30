@@ -264,6 +264,23 @@ public class DrawBoard implements MouseListener{
         return board;
     }
 
+    public int[][] deepCopyBoard(int[][] original){
+        int[][] copy = new int[ROWS][COLS];
+
+        for(int i = 0; i < ROWS; i++){
+            for(int j = 0; j < COLS; j++){
+                switch(original[ROWS][COLS]){
+                    case 0: copy[i][j] = 0;
+                    case 1: copy[i][j] = 1;
+                    case 2: copy[i][j] = 2;
+                    default: copy[i][j] = -1;
+                }
+            }
+        }
+
+        return copy;
+    }
+
     public static void main(String[] args){
         new DrawBoard();
     }
