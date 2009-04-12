@@ -313,18 +313,30 @@ public class DrawBoard implements MouseListener{
         new DrawBoard();
     }
 
+        //returns true if a column is full, false otherwise.
+    private boolean isFull(int j)
+    {
+        if(board[0][j] != 0)
+            return true;
+        else
+            return false;
+    }
+
     public void mouseClicked(MouseEvent e) {}
 
     public void mousePressed(MouseEvent e) {}
 
     public void mouseReleased(MouseEvent e) {
         int col = e.getX() / (frame.getWidth() / COLS);
-        dropPiece(col, 1);
+        
+        if(!isFull(col)){
+            dropPiece(col, 1);
 
-        MiniMax m = new MiniMax(board);
-        col = m.minMax(3);
+            MiniMax m = new MiniMax(board);
+            col = m.minMax(3);
 
-        dropPiece(col, 2);
+            dropPiece(col, 2);
+        }
     }
 
     public void mouseEntered(MouseEvent e) {}
