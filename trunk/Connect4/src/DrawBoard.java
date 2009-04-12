@@ -53,7 +53,7 @@ public class DrawBoard implements MouseListener{
         ImageIcon blue = new ImageIcon("pics/blue.jpg");
         ImageIcon red = new ImageIcon("pics/red.jpg");
         ImageIcon blank = new ImageIcon("pics/empty.jpg");
-//try{        
+//try{
 
         frame.getContentPane().setLayout(new GridLayout(6,7));
         frame.getContentPane().removeAll();
@@ -156,7 +156,7 @@ public class DrawBoard implements MouseListener{
                 return true;
             }
         }
-        return false; 
+        return false;
     }
     //Checks win along main diagnol. Upper left to lower right
     private boolean checkDiagWin(int row, int col, int player)
@@ -227,7 +227,7 @@ public class DrawBoard implements MouseListener{
             if(inarow == 4)
             {
                 return true;
-            }            
+            }
         }
         return false;
     }
@@ -243,7 +243,7 @@ public class DrawBoard implements MouseListener{
 
     //Drops a piece on the board for the player.
     private boolean dropPiece(int col, int player){
-        
+
 
         for(int i = ROWS-1; i >= 0; i--){
             if(board[i][col] == 0){
@@ -256,9 +256,9 @@ public class DrawBoard implements MouseListener{
         }
         //if there is a computer player it should move now
 
-        
-        
-        
+
+
+
         return false;
     }
 
@@ -272,7 +272,7 @@ public class DrawBoard implements MouseListener{
 
         for(int i = 0; i < original.length; i++){
             for(int j = 0; j < original[i].length; j++){
-                
+
                 if(original[i][j] == 0)
                         copy[i][j] = 0;
                 else if(original[i][j] == 1)
@@ -281,7 +281,7 @@ public class DrawBoard implements MouseListener{
                         copy[i][j] = 2;
                 else
                         copy[i][j] = -1;
-                
+
                 /*switch(original[i][j]){
                     case 0: copy[i][j] = 0;
                     case 1: copy[i][j] = 1;
@@ -306,12 +306,12 @@ public class DrawBoard implements MouseListener{
         //if(e.getButton() == 1)
         int col = e.getX() / (frame.getWidth() / COLS);
         dropPiece(col, 1);
-        
+
         MiniMax m = new MiniMax();
-        col = m.minimax(deepCopyBoard(board), 2, false);
-        
+        col = m.minimax(deepCopyBoard(board), 1, false);
+
         dropPiece(col, 2);
-            
+
         //else
          //   dropPiece(e, 2);
     }
