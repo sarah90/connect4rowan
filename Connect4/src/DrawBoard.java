@@ -1,4 +1,3 @@
-//import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -32,6 +31,8 @@ public class DrawBoard implements MouseListener{
         menubar.add(menu);
         JMenuItem newGame = new JMenuItem("New Game");
         menu.add(newGame);
+        JMenuItem rules = new JMenuItem("Rules");
+        menu.add(rules);
         newGame.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent arg0)
@@ -39,6 +40,18 @@ public class DrawBoard implements MouseListener{
                 newBoard();
                 addComponentsToPane();  //When File > New game is clicked
                 frame.pack();           //The board is cleared.
+            }
+        });
+        rules.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                JOptionPane.showMessageDialog (null, "Rules: To win at Connect 4," +
+                        " a player \nmust line up 4 of their pieces\n in a row, column," +
+                        " or diagonally. The player will\n go first when you start the game,\n but" +
+                        " after the first game, the loser will go first.",
+                                "Rules", JOptionPane.INFORMATION_MESSAGE);
+                frame.pack();
             }
         });
         frame.setJMenuBar(menubar);
@@ -119,6 +132,7 @@ public class DrawBoard implements MouseListener{
     }
 
 
+    //checks for win conditions under the inverse diagonal.
     private boolean checkInvDiagWin(int row, int col, int player)
     {
         //if player is on these locations diagonal check is not needed (no WIN)
@@ -250,7 +264,7 @@ public class DrawBoard implements MouseListener{
                 board[i][col] = player;
                 addComponentsToPane();
                 frame.pack();
-                checkWin(i, col, 1);
+                checkWin(i, col, player);
                 return true;
             }
         }
@@ -267,6 +281,7 @@ public class DrawBoard implements MouseListener{
         return board;
     }
 
+    //Deep copies the board to keep its state.
     public int[][] deepCopyBoard(int[][] original){
         int[][] copy = new int[ROWS][COLS];
 
@@ -303,17 +318,13 @@ public class DrawBoard implements MouseListener{
     public void mousePressed(MouseEvent e) {}
 
     public void mouseReleased(MouseEvent e) {
-        //if(e.getButton() == 1)
         int col = e.getX() / (frame.getWidth() / COLS);
         dropPiece(col, 1);
 
-        MiniMax m = new MiniMax();
-        col = m.minimax(deepCopyBoard(board), 1, false);
+        MiniMax m = new MiniMax(board);
+        col = m.minMax(3);
 
         dropPiece(col, 2);
-
-        //else
-         //   dropPiece(e, 2);
     }
 
     public void mouseEntered(MouseEvent e) {}
