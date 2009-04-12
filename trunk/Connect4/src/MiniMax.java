@@ -33,7 +33,7 @@ public class MiniMax {
           if(!isFull(j))
           {
                 move(j, false);
-                int strength = expandMinNode(depth -1, maxStrength);
+                int strength = expandMaxNode(depth -1, maxStrength);
                 if(strength > maxStrength)
                 {
                     maxStrength = strength;
@@ -142,40 +142,44 @@ public class MiniMax {
     private int my_heuristic(boolean playersturn)
     {
         int h = 0;
-        int temp = 0;
         int piece = 0;
 
         if(playersturn)
             piece = 1;
         else piece = 2;
 
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board.length; j++){
-                if(board[i][j] == piece){
-
-                    if(j == 0) temp+= 1;
-                    if(j == 1) temp += 2;
-                    if(j == 2) temp += 3;
-                    if(j == 3) temp += 4;
-                    if(j == 4) temp += 3;
-                    if(j == 5) temp += 2;
-                    if(j == 6) temp += 1;
-
-//                    if(j == 0) temp += 1;
-//                    if(j == 1) temp += 2;
-//                    if(j == 2) temp += 3;
-//                    if(j == 3) temp += 3;
-//                    if(j == 4) temp += 2;
-//                    if(j == 5) temp += 1;
-
-
-
-                }
-            }
+        if(hasWinner(1))
+        {
+            System.out.println("1 might win");
+            return Integer.MIN_VALUE;
+        }
+        if(hasWinner(2))
+        {
+            return Integer.MIN_VALUE;
         }
 
-        return temp;
+        return h;
     }
 
+    private boolean hasWinner(int piece)
+    {
+        for(int row = 0; row < 6; row ++)
+            for(int col = 0; col < 7; col ++)
+            {
+                //horizontal checks for winner
+                if((col >= 3) && (board[row][col] == piece) && (board[row][col-1] == piece) &&
+                        (board[row][col-2] == piece) && (board[row][col-3] == piece))
+                    return true;
+
+                if((col <= 3) && (board[row][col] == piece) && (board[row][col+1] == piece) &&
+                        (board[row][col+2] == piece) && (board[row][col+3] == piece))
+                    return true;
+
+                if((row <= 2) && (board[row][col] == piece) && (board[row+1][col] == piece)
+                         && (board[row+2][col] == piece) && (board[row+3][col] == piece))
+                    return true;
+            }
+       return false;
+    }
 
 }
