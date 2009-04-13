@@ -150,14 +150,235 @@ public class MiniMax {
 
         if(hasWinner(1))
         {
-            System.out.println("1 might win");
             return Integer.MIN_VALUE;
         }
         if(hasWinner(2))
         {
-            return Integer.MIN_VALUE;
+            return Integer.MAX_VALUE;
         }
 
+
+        for(int row = 0; row < 6; row++)
+        {
+            for(int col = 0; col < 7; col++)
+            {
+                if ((col>=3)
+                && (board[row][col-1] == piece)
+                && (board[row][col-2] == piece)
+                && (board[row][col-3] == piece))
+                h=h+16;
+                //right
+                if ((col<=3)
+                && (board[row][col+1] == piece)
+                && (board[row][col+2] == piece)
+                && (board[row][col+3] == piece))
+                    h=h+16;
+                //check y direction
+                if ((row<=2)
+                && (board[row+1][col] == piece)
+                && (board[row+2][col] == piece)
+                && (board[row+3][col] == piece))
+                    h=h+16;
+                //check left diagonal
+                if ((col>=3) && (row<=2)
+                && (board[row+1][col-1] == piece)
+                && (board[row+2][col-2] == piece)
+                && (board[row+3][col-3] == piece))
+                    h=h+16;
+
+                if ((col<=3) && (row<=2)
+                && (board[row+1][col+1] == piece)
+                && (board[row+2][col+2] == piece)
+                && (board[row+3][col+3] == piece))
+                    h=h+16;
+
+                if ((col>=3) && (row>=3)
+                && (board[row-1][col-1] == piece)
+                && (board[row-2][col-2] == piece)
+                && (board[row-3][col-3] == piece))
+                    h=h+16;
+
+                if ((col<=3) && (row>=3)
+                && (board[row-1][col+1] == piece)
+                && (board[row-2][col+2] == piece)
+                && (board[row-3][col+3] == piece))
+                    h=h+16;
+
+                if ((col>=2)
+                && (board[row][col-1] == piece)
+                && (board[row][col-2] == piece))
+                    h=h+4;
+                //right
+                if ((col<=4)
+                && (board[row][col+1] == piece)
+                && (board[row][col+2] == piece))
+                    h=h+4;
+                //check y direction
+                if ((row<=3)
+                && (board[row+1][col] == piece)
+                && (board[row+2][col] == piece))
+                    h=h+4;
+                //check left diagonal
+                if ((col>=2) && (row<=3)
+                && (board[row+1][col-1] == piece)
+                && (board[row+2][col-2] == piece))
+                    h=h+4;
+
+                if ((col<=4) && (row<=3)
+                && (board[row+1][col+1] == piece)
+                && (board[row+2][col+2] == piece))
+                    h=h+4;
+
+                if ((col>=2) && (row>=2)
+                && (board[row-1][col-1] == piece)
+                && (board[row-2][col-2] == piece))
+                h=h+4;
+
+                if ((col<=4) && (row>=2)
+                && (board[row-1][col+1] == piece)
+                && (board[row-2][col+2] == piece))
+                    h=h+4;
+
+                if ((col>=1)
+                && (board[row][col-1] == piece))
+                    h=h+2;
+                //right
+
+                if ((col<=5)
+                && (board[row][col+1] == piece))
+                    h=h+2;
+                //check y direction
+                if ((row<=4)
+                && (board[row+1][col] == piece))
+                    h=h+2;
+                //check left diagonal
+                if ((col>=1) && (row<=4)
+                && (board[row+1][col-1] == piece))
+                    h=h+2;
+
+                if ((col<=5) && (row<=4)
+                && (board[row+1][col+1] == piece))
+                    h=h+2;
+
+                if ((col>=1) && (row>=1)
+                && (board[row-1][col-1] == piece))
+                    h=h+2;
+
+                if ((col<=5) && (row>=1)
+                && (board[row-1][col+1] == piece))
+                    h=h+2;
+
+
+                //Defensive check
+                //check x direction.
+                //left
+                if ((col>=3)
+                && (board[row][col-1] == 3 - piece)
+                && (board[row][col-2] == 3 - piece)
+                && (board[row][col-3] == 3 - piece))
+                    h=h+14;
+                //right
+                if ((col<=3)
+                && (board[row][col+1] == 3 - piece)
+                && (board[row][col+2] == 3 - piece)
+                && (board[row][col+3] == 3 - piece))
+                   h=h+14;
+               //check y direction
+                if ((row<=2)
+                && (board[row+1][col] == 3 - piece)
+                && (board[row+2][col] == 3 - piece)
+                && (board[row+3][col] == 3 - piece))
+                   h=h+14;
+               //check left diagonal
+                if ((col>=3) && (row<=2)
+                && (board[row+1][col-1] == 3 - piece)
+                && (board[row+2][col-2] == 3 - piece)
+                && (board[row+3][col-3] == 3 - piece))
+                    h=h+14;
+
+                if ((col<=3) && (row<=2)
+                && (board[row+1][col+1] == 3 - piece)
+                && (board[row+2][col+2] == 3 - piece)
+                && (board[row+3][col+3] == 3 - piece))
+                    h=h+14;
+
+                if ((col>=3) && (row>=3)
+                && (board[row-1][col-1] == 3 - piece)
+                && (board[row-2][col-2] == 3 - piece)
+                && (board[row-3][col-3] == 3 - piece))
+                    h=h+14;
+
+                if ((col<=3) && (row>=3)
+                && (board[row-1][col+1] == 3 - piece)
+                && (board[row-2][col+2] == 3 - piece)
+                && (board[row-3][col+3] == 3 - piece))
+                    h=h+14;
+
+                    if ((col>=2)
+                && (board[row][col-1] == 3 - piece)
+                && (board[row][col-2] == 3 - piece))
+                    h=h+4;
+                //right
+                if ((col<=4)
+                && (board[row][col+1] == 3 - piece)
+                && (board[row][col+2] == 3 - piece))
+                    h=h+4;
+                //check y direction
+                if ((row<=3)
+                && (board[row+1][col] == 3 - piece)
+                && (board[row+2][col] == 3 - piece))
+                    h=h+4;
+                //check left diagonal
+                if ((col>=2) && (row<=3)
+                && (board[row+1][col-1] == 3 - piece)
+                && (board[row+2][col-2] == 3 - piece))
+                    h=h+4;
+
+                if ((col<=4) && (row<=3)
+                && (board[row+1][col+1] == 3 - piece)
+                && (board[row+2][col+2] == 3 - piece))
+                    h=h+4;
+
+                if ((col>=2) && (row>=2)
+                && (board[row-1][col-1] == 3 - piece)
+                && (board[row-2][col-2] == 3 - piece))
+                    h=h+4;
+
+                if ((col<=4) && (row>=2)
+                && (board[row-1][col+1] == 3 - piece)
+                && (board[row-2][col+2] == 3 - piece))
+                    h=h+4;
+
+                if ((col>=1)
+                && (board[row][col-1] == 3 - piece))
+                    h=h+2;
+                //right
+
+                if ((col<=5)
+                && (board[row][col+1] == 3 - piece))
+                    h=h+2;
+                //check y direction
+                if ((row<=4)
+                && (board[row+1][col] == 3 - piece))
+                    h=h+2;
+                //check left diagonal
+                if ((col>=1) && (row<=4)
+                && (board[row+1][col-1] == 3 - piece))
+                    h=h+2;
+
+                if ((col<=5) && (row<=4)
+                && (board[row+1][col+1] == 3 - piece))
+                    h=h+2;
+
+                if ((col>=1) && (row>=1)
+                && (board[row-1][col-1] == 3 - piece))
+                    h=h+2;
+
+                if ((col<=5) && (row>=1)
+                && (board[row-1][col+1] == 3 - piece))
+                    h=h+2;
+        }
+     }
         return h;
     }
 
