@@ -417,6 +417,7 @@ public class MiniMax {
             for(int col = 0; col < 7; col++)
             {
                 //check 2 in a row
+                //vertical check
                 if (    row <= 3 &&
                         board[row][col] == 2 &&
                         board[row+1][col] == 1 &&
@@ -424,7 +425,7 @@ public class MiniMax {
                     h += 10;
 
 
-
+                //horizontal check
                 if (    col <= 3 &&
                         board[row][col] == 2 &&
                         board[row][col+1] == 1 &&
@@ -439,25 +440,30 @@ public class MiniMax {
 
 
                 //check 3 in a row
-                if (    row <= 3 &&
+
+                //vertical check
+                if (    row <= 2 &&
                         board[row][col] == 2 &&
                         board[row+1][col] == 1 &&
-                        board[row+2][col] == 1)
+                        board[row+2][col] == 1 &&
+                        board[row+3][col] == 1)
                     h += 10;
 
 
-
+                //horiztonal check
                 if (    col <= 3 &&
                         board[row][col] == 2 &&
                         board[row][col+1] == 1 &&
-                        board[row][col+2] == 1)
-                    h += 10;
+                        board[row][col+2] == 1 &&
+                        board[row][col+3] == 1)
+                    h += 30;
 
                 if (    col >= 3 &&
                         board[row][col] == 2 &&
                         board[row][col-1] == 1 &&
-                        board[row][col-2] == 1)
-                    h += 10;
+                        board[row][col-2] == 1 &&
+                        board[row][col-3] == 1)
+                    h += 30;
             }
         }
 
