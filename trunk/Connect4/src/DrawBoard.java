@@ -333,7 +333,7 @@ public class DrawBoard implements MouseListener{
             dropPiece(col, 1);
 
             MiniMax m = new MiniMax(board);
-            col = m.minMax(3);
+            col = m.minMax(2);
 
             dropPiece(col, 2);
         }

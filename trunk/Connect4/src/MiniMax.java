@@ -50,7 +50,7 @@ public class MiniMax {
   {
         if (depth == 0)
         {
-            return my_heuristic(true);
+            return my_heuristic2(true);
         }
         int maxStrength = MIN_POSSIBLE_VALUE;
 
@@ -80,7 +80,7 @@ public class MiniMax {
   {
       if(depth == 0)
       {
-            return my_heuristic(false);
+            return my_heuristic2(false);
       }
 
       int minStrength = MAX_POSSIBLE_VALUE;
@@ -379,7 +379,99 @@ public class MiniMax {
                     h=h+2;
         }
      }
+
+        System.out.println("\nH = "+h);
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 7; j++){
+                System.out.print(board[i][j]);
+
+            }
+            System.out.println();
+        }
+
+
         return h;
+    }
+
+    private int my_heuristic2(boolean playersturn)
+    {
+        int h = 0;
+        int piece = 0;
+
+        if(playersturn)
+            piece = 1;
+        else piece = 2;
+
+        if(hasWinner(1))
+        {
+            return Integer.MIN_VALUE;
+        }
+        if(hasWinner(2))
+        {
+            return Integer.MAX_VALUE;
+        }
+
+
+        for(int row = 5; row >= 0; row--)
+        {
+            for(int col = 0; col < 7; col++)
+            {
+                //check 2 in a row
+                if (    row <= 3 &&
+                        board[row][col] == 2 &&
+                        board[row+1][col] == 1 &&
+                        board[row+2][col] == 1)
+                    h += 10;
+
+
+
+                if (    col <= 3 &&
+                        board[row][col] == 2 &&
+                        board[row][col+1] == 1 &&
+                        board[row][col+2] == 1)
+                    h += 10;
+
+                if (    col >= 3 &&
+                        board[row][col] == 2 &&
+                        board[row][col-1] == 1 &&
+                        board[row][col-2] == 1)
+                    h += 10;
+
+
+                //check 3 in a row
+                if (    row <= 3 &&
+                        board[row][col] == 2 &&
+                        board[row+1][col] == 1 &&
+                        board[row+2][col] == 1)
+                    h += 10;
+
+
+
+                if (    col <= 3 &&
+                        board[row][col] == 2 &&
+                        board[row][col+1] == 1 &&
+                        board[row][col+2] == 1)
+                    h += 10;
+
+                if (    col >= 3 &&
+                        board[row][col] == 2 &&
+                        board[row][col-1] == 1 &&
+                        board[row][col-2] == 1)
+                    h += 10;
+            }
+        }
+
+                System.out.println("\nH = "+h);
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 7; j++){
+                System.out.print(board[i][j]);
+
+            }
+            System.out.println();
+        }
+
+        return h;
+
     }
 
     private boolean hasWinner(int piece)
