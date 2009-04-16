@@ -423,7 +423,8 @@ public class MiniMax {
                 if(col == 3 && board[row][col] == 2)
                     h += 1;
                 
-
+                /*DEFENSE
+                    Primary Priority
                 /*
                  check 2 in a row
                  */
@@ -506,6 +507,15 @@ public class MiniMax {
                         board[row-2][col+2] == 1 &&
                         board[row-3][col+3] == 1)
                     h += 12;
+
+
+                /* OFFENSE
+                        Secondary Priority
+                 */
+
+
+
+
             }
 
 
