@@ -179,7 +179,6 @@ public class DrawBoard implements MouseListener{
             }
             if(inarow == 4)
             {
-                System.out.println("diagwin");
                 return true;
             }
             r++;

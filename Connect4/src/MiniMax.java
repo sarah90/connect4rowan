@@ -493,12 +493,70 @@ public class MiniMax {
                 if((col <= 3) && (board[row][col] == piece) && (board[row][col+1] == piece) &&
                         (board[row][col+2] == piece) && (board[row][col+3] == piece))
                     return true;
-
+                //Vertical check for winner.
                 if((row <= 2) && (board[row][col] == piece) && (board[row+1][col] == piece)
                          && (board[row+2][col] == piece) && (board[row+3][col] == piece))
                     return true;
+
+                int inarow = 0;
+                //Check Main Diagnol
+                int min = min(row, col);
+                int r = row - min;
+                int c = col - min;
+                while(r < 6 && c < 7)
+                {
+                    if(board[r][c] == piece)
+                    {
+                        inarow++;
+                    }
+                    else
+                    {
+                        inarow = 0;
+                    }
+                    if(inarow == 4)
+                    {
+                        return true;
+                    }
+                    r++;
+                    c++;
+                }
+        
+        //Check inverse diagonal
+        int on_diagonal = 0;
+        int temp_row = row + col; //set temp row where the check will start
+        int temp_col = Math.abs(((temp_row - row)* 1)-col);
+
+        if(temp_row > 5)
+        {
+            temp_row = 5; //adjust range to largest ro        w
+            temp_col = Math.abs(((temp_row - row)* 1)-col);
+        }
+        while(temp_row >=0 && temp_col <= 6)
+        {
+            if(board[temp_row][temp_col] == piece)
+            {
+                on_diagonal++;
             }
+            else
+            {
+                on_diagonal = 0;
+            }
+            temp_row --;
+            temp_col++;
+            if(on_diagonal == 4)
+            {
+                return true;
+            }
+        }
+          }
        return false;
+    }
+    //Returns the smaller of the 2 parameters.
+    private int min(int r, int c)
+    {
+        if(r < c)
+            return r;
+        else return c;
     }
 
 }
