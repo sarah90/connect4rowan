@@ -66,11 +66,9 @@ public class DrawBoard implements MouseListener{
         ImageIcon blue = new ImageIcon("pics/blue.jpg");
         ImageIcon red = new ImageIcon("pics/red.jpg");
         ImageIcon blank = new ImageIcon("pics/empty.jpg");
-//try{
 
         frame.getContentPane().setLayout(new GridLayout(6,7));
         frame.getContentPane().removeAll();
-//}catch(Exception e){}
 
         for(int i = 0; i < ROWS; i++)
             for(int j = 0; j < COLS; j++)
@@ -94,22 +92,6 @@ public class DrawBoard implements MouseListener{
             {
                 board[i][j] = 0;
             }
-
-        /*board[5][6]=2;
-        board[4][6]=2;
-        board[3][6]=2;
-        board[5][5]=2;
-        board[4][5]=2;
-        board[5][4]=2;
-
-        board[5][0]=2;
-        board[4][0]=2;
-        board[3][0]=2;
-        board[5][1]=2;
-        board[4][1]=2;
-        board[5][2]=2;*/
-       // addComponentsToPane();
-         //       frame.pack();
     }
 
     //Returns true if player specified wins. False if not.
@@ -118,9 +100,14 @@ public class DrawBoard implements MouseListener{
         if(checkRowWin(row, col, player) || checkColWin(row, col, player)
                 || checkDiagWin(row, col, player) || checkInvDiagWin(row, col, player))
         {
+            String winner = "";
+            if(player == 1)
+                winner = "SAMIR HARB!!!!";
+            else
+                winner = "The lovely Mrs. Tinkham.";
             JOptionPane.showMessageDialog (null, "WINNER WINNER CHICKEN DINNER: Player \n" +
-                                player +
-                                ". Press ok to start a new game.",
+                                winner +
+                                " Press ok to start a new game.",
                                 "WINNER", JOptionPane.INFORMATION_MESSAGE);
             newBoard();
             addComponentsToPane();
@@ -296,13 +283,6 @@ public class DrawBoard implements MouseListener{
                         copy[i][j] = 2;
                 else
                         copy[i][j] = -1;
-
-                /*switch(original[i][j]){
-                    case 0: copy[i][j] = 0;
-                    case 1: copy[i][j] = 1;
-                    case 2: copy[i][j] = 2;
-                    default: copy[i][j] = -2;
-                }*/
             }
         }
 
