@@ -416,13 +416,15 @@ public class MiniMax {
         {
             for(int col = 0; col < 7; col++)
             {
-                //check 2 in a row
+                /*
+                 check 2 in a row
+                 */
                 //vertical check
                 if (    row <= 3 &&
                         board[row][col] == 2 &&
                         board[row+1][col] == 1 &&
                         board[row+2][col] == 1)
-                    h += 10;
+                    h += 1;
 
 
                 //horizontal check
@@ -430,16 +432,18 @@ public class MiniMax {
                         board[row][col] == 2 &&
                         board[row][col+1] == 1 &&
                         board[row][col+2] == 1)
-                    h += 10;
+                    h += 1;
 
                 if (    col >= 3 &&
                         board[row][col] == 2 &&
                         board[row][col-1] == 1 &&
                         board[row][col-2] == 1)
-                    h += 10;
+                    h += 1;
 
 
-                //check 3 in a row
+                /*
+                 check 3 in a row
+                 */
 
                 //vertical check
                 if (    row <= 2 &&
@@ -447,7 +451,7 @@ public class MiniMax {
                         board[row+1][col] == 1 &&
                         board[row+2][col] == 1 &&
                         board[row+3][col] == 1)
-                    h += 10;
+                    h += 3;
 
 
                 //horiztonal check
@@ -456,14 +460,22 @@ public class MiniMax {
                         board[row][col+1] == 1 &&
                         board[row][col+2] == 1 &&
                         board[row][col+3] == 1)
-                    h += 30;
+                    h += 3;
 
                 if (    col >= 3 &&
                         board[row][col] == 2 &&
                         board[row][col-1] == 1 &&
                         board[row][col-2] == 1 &&
                         board[row][col-3] == 1)
-                    h += 30;
+                    h += 3;
+
+                //diagnol left
+                if (    row <= 2 && col >= 3 &&
+                        board[row][col] == 2 &&
+                        board[row+1][col-1] == 1 &&
+                        board[row+2][col-2] == 1 &&
+                        board[row+3][col-3] == 1)
+                    h += 3;
             }
         }
 
