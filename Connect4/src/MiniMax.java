@@ -469,7 +469,7 @@ public class MiniMax {
                         board[row][col-3] == 1)
                     h += 3;
 
-                //diagnol left
+                //diagonal left
                 if (    row <= 2 && col >= 3 &&
                         board[row][col] == 2 &&
                         board[row+1][col-1] == 1 &&
