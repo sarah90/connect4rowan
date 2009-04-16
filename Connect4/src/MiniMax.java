@@ -417,6 +417,14 @@ public class MiniMax {
             for(int col = 0; col < 7; col++)
             {
                 /*
+                 * middle column is better
+                 */
+
+                if(col == 3)
+                    h += 1;
+
+
+                /*
                  check 2 in a row
                  */
                 //vertical check
@@ -424,7 +432,7 @@ public class MiniMax {
                         board[row][col] == 2 &&
                         board[row+1][col] == 1 &&
                         board[row+2][col] == 1)
-                    h += 1;
+                    h += 3;
 
 
                 //horizontal check
@@ -432,13 +440,13 @@ public class MiniMax {
                         board[row][col] == 2 &&
                         board[row][col+1] == 1 &&
                         board[row][col+2] == 1)
-                    h += 1;
+                    h += 3;
 
                 if (    col >= 3 &&
                         board[row][col] == 2 &&
                         board[row][col-1] == 1 &&
                         board[row][col-2] == 1)
-                    h += 1;
+                    h += 3;
 
 
                 /*
@@ -451,7 +459,7 @@ public class MiniMax {
                         board[row+1][col] == 1 &&
                         board[row+2][col] == 1 &&
                         board[row+3][col] == 1)
-                    h += 3;
+                    h += 12;
 
 
                 //horiztonal check
@@ -460,14 +468,14 @@ public class MiniMax {
                         board[row][col+1] == 1 &&
                         board[row][col+2] == 1 &&
                         board[row][col+3] == 1)
-                    h += 3;
+                    h += 12;
 
                 if (    col >= 3 &&
                         board[row][col] == 2 &&
                         board[row][col-1] == 1 &&
                         board[row][col-2] == 1 &&
                         board[row][col-3] == 1)
-                    h += 3;
+                    h += 12;
 
                 //diagonal left
                 if (    row <= 2 && col >= 3 &&
@@ -475,14 +483,29 @@ public class MiniMax {
                         board[row+1][col-1] == 1 &&
                         board[row+2][col-2] == 1 &&
                         board[row+3][col-3] == 1)
-                    h += 3;
+                    h += 12;
+
+                if (    row >= 3 && col >= 3 &&
+                        board[row][col] == 2 &&
+                        board[row-1][col-1] == 1 &&
+                        board[row-2][col-2] == 1 &&
+                        board[row-3][col-3] == 1)
+                    h += 12;
+
                 //diagonal right
                   if (  row <= 2 && col <=3 &&
                         board[row][col] == 2 &&
                         board[row+1][col+1] == 1 &&
                         board[row+2][col+2] == 1 &&
-                        board[row+2][col+3] == 1)
-                    h +=3;
+                        board[row+3][col+3] == 1)
+                    h += 12;
+
+                if (  row >= 3 && col <=3 &&
+                        board[row][col] == 2 &&
+                        board[row-1][col+1] == 1 &&
+                        board[row-2][col+2] == 1 &&
+                        board[row-3][col+3] == 1)
+                    h += 12;
             }
 
 
