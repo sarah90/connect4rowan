@@ -420,9 +420,9 @@ public class MiniMax {
                  * middle column is better
                  */
 
-                if(col == 3)
+                if(col == 3 && board[row][col] == 2)
                     h += 1;
-
+                
 
                 /*
                  check 2 in a row
