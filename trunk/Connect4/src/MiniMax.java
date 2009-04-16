@@ -476,7 +476,16 @@ public class MiniMax {
                         board[row+2][col-2] == 1 &&
                         board[row+3][col-3] == 1)
                     h += 3;
+                //diagonal right
+                  if (  row <= 2 && col <=3 &&
+                        board[row][col] == 2 &&
+                        board[row+1][col+1] == 1 &&
+                        board[row+2][col+2] == 1 &&
+                        board[row+2][col+3] == 1)
+                    h +=3;
             }
+
+
         }
 
                 System.out.println("\nH = "+h);

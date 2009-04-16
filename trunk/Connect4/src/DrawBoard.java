@@ -64,7 +64,7 @@ public class DrawBoard implements MouseListener{
     public void addComponentsToPane()
     {
         ImageIcon blue = new ImageIcon("pics/blue.jpg");
-        ImageIcon red = new ImageIcon("pics/red.jpg");
+        ImageIcon red  = new ImageIcon("pics/red.jpg");
         ImageIcon blank = new ImageIcon("pics/empty.jpg");
 
         frame.getContentPane().setLayout(new GridLayout(6,7));
@@ -253,6 +253,7 @@ public class DrawBoard implements MouseListener{
                 checkWin(i, col, player);
                 return true;
             }
+           
         }
         //if there is a computer player it should move now
 
