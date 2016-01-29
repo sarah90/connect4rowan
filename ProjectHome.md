@@ -1,0 +1,1 @@
+connect 4 game in java using minimax for AI by rowan students for an AI class
